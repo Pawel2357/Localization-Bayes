@@ -1,0 +1,127 @@
+
+1. Przedstawienie zadania
+Zadanie - robot ma na podstawie pomiarów ze środowiska dowiedzieć się jakie jest jego położenie. Robot na początku nie zna swojego położenia.
+
+Robot porusza się w dyskretnej przestrzeni stanów - kwadratowa siatka 4x4 16 pól. W jednym ruchu robot może przemieścić się tylko do sąsiedniego pola. W każdym położeniu robot dokonuje pomiaru otoczenia(wykrywa czy jest ścianka lub ścianki). 
+
+2. Idea algorytmu
+Na podstawie wyniku pomiaru obliczane jest prawdoposobieństwo położenia robota we wszystkich polach ze wzoru Bayesa. Idea algorytmu jest oparta na HMM(hidden Markov model).
+Ruch następuje losowo w kierunku w którym robot może się poruszyć(nie ma ścianki).
+
+3. Pzrykładowe wyniki działania programu
+[a, b] - bierzące położenie robota
+macierz - reprezentuje prawdopodobieństwo że robot znajduje się w danym położeniu(to co robot wie na podstawie pomiarów)
+
+Wynik działania programu. Robot wykonał 15 losowych ruchów.
+krok1
+[1, 2] - położenie 
+[0.0, 0.0, 0.0, 0.0]
+[0.0, 0.24999999999999994, 0.25, 0.0]
+[0.0, 0.25, 0.25, 0.0]
+[0.0, 0.0, 0.0, 0.0]
+
+krok2
+[1, 1] - położenie 
+[0.0, 0.0, 0.0, 0.0]
+[0.0, 0.25, 0.24999999999999997, 0.0]
+[0.0, 0.24999999999999997, 0.25, 0.0]
+[0.0, 0.0, 0.0, 0.0]
+
+krok3
+[0, 1] - położenie 
+[0.0, 0.0, 0.0, 0.0]
+[0.5, 0.0, 0.0, 0.0]
+[0.49999999999999994, 0.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 0.0]
+
+krok4
+[0, 2] - położenie 
+[0.0, 0.0, 0.0, 0.0]
+[0.5, 0.0, 0.0, 0.0]
+[0.5000000000000001, 0.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 0.0]
+
+krok5
+[0, 3] - położenie 
+[1.0, 0.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 0.0]
+
+krok6
+[0, 2] - położenie 
+[0.0, 0.0, 0.0, 0.0]
+[1.0, 0.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 0.0]
+
+krok7
+[1, 2] - położenie 
+[0.0, 0.0, 0.0, 0.0]
+[0.0, 1.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 0.0]
+
+krok8
+[2, 2] - położenie 
+[0.0, 0.0, 0.0, 0.0]
+[0.0, 0.0, 0.5, 0.0]
+[0.0, 0.5, 0.0, 0.0]
+[0.0, 0.0, 0.0, 0.0]
+uwaga - w tym punkcie prawdopodobieństwo zmalało z 1.0 do 0.5. Jest to spowodowane tym, że robot nie wie w którym kierunku się przemieszcza. Robot nie ma zamontowanego kompasu.
+
+krok9
+[2, 1] - położenie 
+[0.0, 0.0, 0.0, 0.0]
+[0.0, 0.5, 0.0, 0.0]
+[0.0, 0.0, 0.5, 0.0]
+[0.0, 0.0, 0.0, 0.0]
+
+krok10
+[3, 1] - położenie 
+[0.0, 0.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 1.0]
+[0.0, 0.0, 0.0, 0.0]
+
+krok11
+[3, 2] - położenie 
+[0.0, 0.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 1.0]
+[0.0, 0.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 0.0]
+
+krok12
+[2, 2] - położenie 
+[0.0, 0.0, 0.0, 0.0]
+[0.0, 0.0, 1.0, 0.0]
+[0.0, 0.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 0.0]
+
+krok13
+[2, 3] - położenie 
+[0.0, 0.0, 1.0, 0.0]
+[0.0, 0.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 0.0]
+
+krok14
+[2, 2] - położenie 
+[0.0, 0.0, 0.0, 0.0]
+[0.0, 0.0, 1.0, 0.0]
+[0.0, 0.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 0.0]
+
+krok15
+[2, 1] - położenie 
+[0.0, 0.0, 0.0, 0.0]
+[0.0, 0.5, 0.0, 0.0]
+[0.0, 0.0, 0.5, 0.0]
+[0.0, 0.0, 0.0, 0.0]
+
+4. Wnioski i pytania
+Robot w kroku 5 wykrył swoją pozycję. 
+W kroku 8 robot stracił pełną informację o swoim położeniu. Jest to spwodowane brakiem kontaktu ze ściankami w kilku krokach. 
+Plansza po której porusza się robot może zostać zmodyfikowana w programie. Można dodawać lub usuwać pola.
+Pytanie: W jaki sposób można zmodyfikować model/algorytm dodając do robota kompas? Wtedy robot wie w którym kierunku wykonał ruch(lewo, prawo).
+
