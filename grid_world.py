@@ -141,7 +141,7 @@ class grid_world:
         print( [self.states[3].P_new, self.states[6].P_new, self.states[10].P_new, self.states[14].P_new] )
         print( [self.states[2].P_new, self.states[5].P_new, self.states[9].P_new, self.states[13].P_new] )
         print( [self.states[1].P_new, self.states[4].P_new, self.states[8].P_new, self.states[12].P_new] )
-        print( [self.states[0].P_new, 10.0, self.states[7].P_new, self.states[11].P_new] )
+        print( [self.states[0].P_new, "Wall", self.states[7].P_new, self.states[11].P_new] )
         
         # self.states[4].P_new
         # 4. Udate_P - change from P_old to P_new in all space()
